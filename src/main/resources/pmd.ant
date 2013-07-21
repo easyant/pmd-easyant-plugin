@@ -23,7 +23,6 @@
         <ea:core-version requiredrevision="[0.7,+]" />
     -->
     
-    <!-- Sample init target -->
     <target name="pmd:init">
         <taskdef name="pmd" classname="net.sourceforge.pmd.ant.PMDTask" classpathref="org.apache.easyant.plugins#pmd.classpath"/>
         <taskdef name="cpd" classname="net.sourceforge.pmd.cpd.CPDTask" classpathref="org.apache.easyant.plugins#pmd.classpath"/>
