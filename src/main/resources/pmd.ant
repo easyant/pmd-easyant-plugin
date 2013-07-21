@@ -36,7 +36,7 @@
     </target>
 
 
-    <target name="pmd:cpd" depends="pmd:init">
+    <target name="pmd:cpd" depends="pmd:init" description="generates a report for PMD's Copy/Paste Detector (CPD) tool">
         <ea:parameter property="pmd.format" default="text" description="The format of the report (e.g. csv, text, xml); defaults to text."/>
         <ea:parameter property="pmd.ignore.literals" default="false" description="if true, CPD ignores literal value differences when evaluating a duplicate block. This means that foo=42; and foo=43; will be seen as equivalent. You may want to run PMD with this option off to start with and then switch it on to see what it turns up; defaults to false."/>
         <ea:parameter property="pmd.ignore.identifiers" default="false" description="Similar to ignoreLiterals but for identifiers; i.e., variable names, methods names, and so forth; defaults to false."/>
@@ -54,7 +54,7 @@
     </target>
 
 
-    <target name="pmd:pmd" depends="pmd:init">
+    <target name="pmd:pmd" depends="pmd:init" description="creates a PMD report based on the rulesets and configuration set in the plugin">
         <ea:parameter property="pmd.rulesetfiles" default="rulesets/java/imports.xml,java-unusedcode" description="A comma delimited list of ruleset files ('rulesets/basic.xml,rulesets/design.xml'). If you write your own ruleset files, you can put them on the classpath and plug them in here."/>
         <ea:parameter property="pmd.failonerror" default="true" description="Whether or not to fail the build if any errors occur while processing the files"/>
         <ea:parameter property="pmd.failonruleviolation" default="true" description="Whether or not to fail the build if PMD finds any problems"/>
