@@ -39,12 +39,16 @@
     
     <!-- init test case -->         
     <target name="test-pmd:init" depends="pmd:init">
-        <au:assertPropertyEquals name="pmd.rulesetfiles" value="rulesets/java/imports.xml,java-unusedcode"/>
         <au:assertPropertyEquals name="pmd.encoding" value="UTF-8"/>
         <au:assertPropertyEquals name="target.reports" value="${target}/reports"/>
     </target>
     
     <target name="test-pmd:pmd" depends="pmd:pmd">
+        <au:assertPropertyEquals name="pmd.rulesetfiles" value="rulesets/java/imports.xml,java-unusedcode"/>
+        <au:assertPropertyEquals name="pmd.failonerror" value="true"/>
+        <au:assertPropertyEquals name="pmd.failonruleviolation" value="true"/>
+        <au:assertPropertyEquals name="pmd.minimum.priority" value="5"/>
+        <au:assertPropertyEquals name="pmd.max.rule.violations" value="0" />
     </target>
 
     <target name="test-pmd:cpd" depends="pmd:cpd">

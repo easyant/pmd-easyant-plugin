@@ -27,7 +27,6 @@
     <target name="pmd:init">
         <taskdef name="pmd" classname="net.sourceforge.pmd.ant.PMDTask" classpathref="org.apache.easyant.plugins#pmd.classpath"/>
         <taskdef name="cpd" classname="net.sourceforge.pmd.cpd.CPDTask" classpathref="org.apache.easyant.plugins#pmd.classpath"/>
-        <ea:parameter property="pmd.rulesetfiles" default="rulesets/java/imports.xml,java-unusedcode" description="A comma delimited list of ruleset files ('rulesets/basic.xml,rulesets/design.xml'). If you write your own ruleset files, you can put them on the classpath and plug them in here."/>
         <ea:parameter property="target.reports" default="${target}/reports" description="base directory for reports" />
         <ea:parameter property="pmd.main.sources" default="${basedir}/src/main/java" description="directory where pmd rules will be checked"/>
         <ea:parameter property="pmd.main.sources.includes" default="**/*.java" description="Pattern describing files included in pmd checks"/>
@@ -56,6 +55,12 @@
 
 
     <target name="pmd:pmd" depends="pmd:init">
+        <ea:parameter property="pmd.rulesetfiles" default="rulesets/java/imports.xml,java-unusedcode" description="A comma delimited list of ruleset files ('rulesets/basic.xml,rulesets/design.xml'). If you write your own ruleset files, you can put them on the classpath and plug them in here."/>
+        <ea:parameter property="pmd.failonerror" default="true" description="Whether or not to fail the build if any errors occur while processing the files"/>
+        <ea:parameter property="pmd.failonruleviolation" default="true" description="Whether or not to fail the build if PMD finds any problems"/>
+        <ea:parameter property="pmd.minimum.priority" default="5" description="The rule priority threshold; rules with lower priority than they will not be used"/>
+        <ea:parameter property="pmd.max.rule.violations" default="0" description="Whether or not to fail the build if PMD finds more than the value of this attribute. Note that setting this attribute does not require to set the failOnRuleViolation to true."/>
+        <pmd encoding="${pmd.encoding}" rulesetfiles="${pmd.rulesetfiles}" failonerror="${pmd.failonerror}" failonruleviolation="${pmd.failonruleviolation}" minimumPriority="${pmd.minimum.priority}" maxruleviolations="${pmd.max.rule.violations}"/>
     </target>
     
 </project>
