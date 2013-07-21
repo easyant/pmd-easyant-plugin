@@ -43,12 +43,12 @@
         <ea:parameter property="pmd.ignore.annotations" default="false" description="Ignore annotations. More and more modern frameworks use annotations on classes and methods, which can be very redundant and trigger CPD matches. With J2EE (CDI, Transaction Handling, etc) and Spring (everything) annotations become very redundant. Often classes or methods have the same 5-6 lines of annotations. This causes false positives."/>
         <ea:parameter property="pmd.language" default="java" description="Flag to select the appropriate language (e.g. cpp, cs, java, php, ruby, and ecmascript); defaults to java."/>
         <ea:parameter property="pmd.minimum.token.count" default="100" description="A positive integer indicating the minimum duplicate size."/>
-        <ea:parameter property="pmd.report.outputfile" default="${target.reports}/cpd.${pmd.format}" description="The destination file for the report. If not specified the console will be used instead."/>
+        <ea:parameter property="pmd.cpd.report.outputfile" default="${target.reports}/cpd.${pmd.format}" description="The destination file for the report. If not specified the console will be used instead."/>
 
         <fileset id="pmd.cpd.fileset" dir="${pmd.main.sources}" includes="${src.main.sources.includes}" excludes="${src.main.sources.excludes}" erroronmissingdir="false"/>
         
         <mkdir dir="${target.reports}"/>  
-        <cpd encoding="${pmd.encoding}" minimumTokenCount="${pmd.minimum.token.count}" format="${pmd.format}" ignoreLiterals="${pmd.ignore.literals}" ignoreIdentifiers="${pmd.ignore.identifiers}" ignoreAnnotations="${pmd.ignore.annotations}" language="${pmd.language}" outputfile="${pmd.report.outputfile}">
+        <cpd encoding="${pmd.encoding}" minimumTokenCount="${pmd.minimum.token.count}" format="${pmd.format}" ignoreLiterals="${pmd.ignore.literals}" ignoreIdentifiers="${pmd.ignore.identifiers}" ignoreAnnotations="${pmd.ignore.annotations}" language="${pmd.language}" outputfile="${pmd.cpd.report.outputfile}">
              <fileset refid="pmd.cpd.fileset"/>
         </cpd>
     </target>
@@ -60,7 +60,11 @@
         <ea:parameter property="pmd.failonruleviolation" default="true" description="Whether or not to fail the build if PMD finds any problems"/>
         <ea:parameter property="pmd.minimum.priority" default="5" description="The rule priority threshold; rules with lower priority than they will not be used"/>
         <ea:parameter property="pmd.max.rule.violations" default="0" description="Whether or not to fail the build if PMD finds more than the value of this attribute. Note that setting this attribute does not require to set the failOnRuleViolation to true."/>
-        <pmd encoding="${pmd.encoding}" rulesetfiles="${pmd.rulesetfiles}" failonerror="${pmd.failonerror}" failonruleviolation="${pmd.failonruleviolation}" minimumPriority="${pmd.minimum.priority}" maxruleviolations="${pmd.max.rule.violations}"/>
+        <ea:parameter property="pmd.report.outputfile" default="${target.reports}/pmd.xml"/>
+        <mkdir dir="${target.reports}"/>  
+        <pmd encoding="${pmd.encoding}" rulesetfiles="${pmd.rulesetfiles}" failonerror="${pmd.failonerror}" failonruleviolation="${pmd.failonruleviolation}" minimumPriority="${pmd.minimum.priority}" maxruleviolations="${pmd.max.rule.violations}">
+             <formatter type="xml" toFile="${pmd.report.outputfile}"/>
+        </pmd>
     </target>
     
 </project>

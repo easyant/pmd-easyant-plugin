@@ -49,6 +49,8 @@
         <au:assertPropertyEquals name="pmd.failonruleviolation" value="true"/>
         <au:assertPropertyEquals name="pmd.minimum.priority" value="5"/>
         <au:assertPropertyEquals name="pmd.max.rule.violations" value="0" />
+        <au:assertPropertyEquals name="pmd.report.outputfile" value="${target.reports}/pmd.xml"/>
+        <au:assertFileExists file="${target.reports}/pmd.xml"/>
     </target>
 
     <target name="test-pmd:cpd" depends="pmd:cpd">
@@ -58,10 +60,11 @@
         <au:assertPropertyEquals name="pmd.ignore.annotations" value="false"/>
         <au:assertPropertyEquals name="pmd.language" value="java"/>
         <au:assertPropertyEquals name="pmd.minimum.token.count" value="100"/>
-        <au:assertPropertyEquals name="pmd.report.outputfile" value="${target.reports}/cpd.${pmd.format}"/>
+        <au:assertPropertyEquals name="pmd.cpd.report.outputfile" value="${target.reports}/cpd.${pmd.format}"/>
         <au:assertPropertyEquals name="pmd.main.sources" value="${basedir}/src/main/java"/>
         <au:assertPropertyEquals name="pmd.main.sources.includes" value="**/*.java"/>
         <au:assertPropertyEquals name="pmd.main.sources.excludes" value=""/>
+        <au:assertFileExists file="${target.reports}/cpd.${pmd.format}"/>
     </target>
 
 </project>
