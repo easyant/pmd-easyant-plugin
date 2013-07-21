@@ -18,10 +18,7 @@
         xmlns:ivy="antlib:org.apache.ivy.ant" 
         xmlns:ea="antlib:org.apache.easyant">
         
-    <!--
-        Force compliance with easyant-core to 0.7 or higher
-        <ea:core-version requiredrevision="[0.7,+]" />
-    -->
+    <ea:core-version requiredrevision="[0.9,+]" />
     
     <target name="pmd:init">
         <taskdef name="pmd" classname="net.sourceforge.pmd.ant.PMDTask" classpathref="org.apache.easyant.plugins#pmd.classpath"/>
