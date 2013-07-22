@@ -41,6 +41,7 @@
     <target name="test-pmd:init" depends="pmd:init">
         <au:assertPropertyEquals name="pmd.encoding" value="UTF-8"/>
         <au:assertPropertyEquals name="target.reports" value="${target}/reports"/>
+        <au:assertReferenceSet refid="pmd.fileset"/>
     </target>
     
     <target name="test-pmd:pmd" depends="pmd:pmd">

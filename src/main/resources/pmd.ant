@@ -24,11 +24,14 @@
         <taskdef name="pmd" classname="net.sourceforge.pmd.ant.PMDTask" classpathref="org.apache.easyant.plugins#pmd.classpath"/>
         <taskdef name="cpd" classname="net.sourceforge.pmd.cpd.CPDTask" classpathref="org.apache.easyant.plugins#pmd.classpath"/>
         <ea:parameter property="target.reports" default="${target}/reports" description="base directory for reports" />
+        <ea:parameter property="pmd.encoding" default="UTF-8" description="The character set encoding (e.g. UTF-8) to use when reading the source code files"/>
+
         <ea:parameter property="pmd.main.sources" default="${basedir}/src/main/java" description="directory where pmd rules will be checked"/>
         <ea:parameter property="pmd.main.sources.includes" default="**/*.java" description="Pattern describing files included in pmd checks"/>
         <ea:parameter property="pmd.main.sources.excludes" default="" description="Pattern describing files included in pmd checks"/>
 
-        <ea:parameter property="pmd.encoding" default="UTF-8" description="The character set encoding (e.g. UTF-8) to use when reading the source code files"/>
+
+        <fileset id="pmd.fileset" dir="${pmd.main.sources}" includes="${src.main.sources.includes}" excludes="${src.main.sources.excludes}" erroronmissingdir="false"/>
     </target>
 
 
@@ -41,11 +44,10 @@
         <ea:parameter property="pmd.minimum.token.count" default="100" description="A positive integer indicating the minimum duplicate size."/>
         <ea:parameter property="pmd.cpd.report.outputfile" default="${target.reports}/cpd.${pmd.format}" description="The destination file for the report. If not specified the console will be used instead."/>
 
-        <fileset id="pmd.cpd.fileset" dir="${pmd.main.sources}" includes="${src.main.sources.includes}" excludes="${src.main.sources.excludes}" erroronmissingdir="false"/>
         
         <mkdir dir="${target.reports}"/>  
         <cpd encoding="${pmd.encoding}" minimumTokenCount="${pmd.minimum.token.count}" format="${pmd.format}" ignoreLiterals="${pmd.ignore.literals}" ignoreIdentifiers="${pmd.ignore.identifiers}" ignoreAnnotations="${pmd.ignore.annotations}" language="${pmd.language}" outputfile="${pmd.cpd.report.outputfile}">
-             <fileset refid="pmd.cpd.fileset"/>
+             <fileset refid="pmd.fileset"/>
         </cpd>
     </target>
 
@@ -60,6 +62,7 @@
         <mkdir dir="${target.reports}"/>  
         <pmd encoding="${pmd.encoding}" rulesetfiles="${pmd.rulesetfiles}" failonerror="${pmd.failonerror}" failonruleviolation="${pmd.failonruleviolation}" minimumPriority="${pmd.minimum.priority}" maxruleviolations="${pmd.max.rule.violations}">
              <formatter type="xml" toFile="${pmd.report.outputfile}"/>
+             <fileset refid="pmd.fileset"/>
         </pmd>
     </target>
     
