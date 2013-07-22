@@ -33,7 +33,7 @@ Organisation attribute is optional. If not specified default one will be used.
 |pmd.failonerror|Whether or not to fail the build if any errors occur while processing the files|false|true|
 |pmd.main.sources.includes|Pattern describing files included in pmd checks|false|**/*.java|
 |pmd.ignore.literals|if true, CPD ignores literal value differences when evaluating a duplicate block. This means that foo=42; and foo=43; will be seen as equivalent. You may want to run PMD with this option off to start with and then switch it on to see what it turns up; defaults to false.|false|false|
-|pmd.rulesetfiles|A comma delimited list of ruleset files ('rulesets/basic.xml,rulesets/design.xml'). If you write your own ruleset files, you can put them on the classpath and plug them in here.|false|rulesets/java/imports.xml,java-unusedcode|
+|pmd.rulesetfiles|A comma delimited list of ruleset files ('rulesets/basic.xml,rulesets/design.xml'). If you write your own ruleset files, you can put them on the classpath and plug them in here.|false|rulesets/java/basic.xml,rulesets/java/imports.xml,java-unusedcode|
 |pmd.report.outputfile||false|${target.reports}/pmd.xml|
 |pmd.encoding|The character set encoding (e.g. UTF-8) to use when reading the source code files|false|UTF-8|
 |pmd.ignore.annotations|Ignore annotations. More and more modern frameworks use annotations on classes and methods, which can be very redundant and trigger CPD matches. With J2EE (CDI, Transaction Handling, etc) and Spring (everything) annotations become very redundant. Often classes or methods have the same 5-6 lines of annotations. This causes false positives.|false|false|
