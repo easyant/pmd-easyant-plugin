@@ -36,17 +36,17 @@
 
 
     <target name="pmd:cpd" depends="pmd:init" description="generates a report for PMD's Copy/Paste Detector (CPD) tool">
-        <ea:parameter property="pmd.format" default="text" description="The format of the report (e.g. csv, text, xml); defaults to text."/>
-        <ea:parameter property="pmd.ignore.literals" default="false" description="if true, CPD ignores literal value differences when evaluating a duplicate block. This means that foo=42; and foo=43; will be seen as equivalent. You may want to run PMD with this option off to start with and then switch it on to see what it turns up; defaults to false."/>
-        <ea:parameter property="pmd.ignore.identifiers" default="false" description="Similar to ignoreLiterals but for identifiers; i.e., variable names, methods names, and so forth; defaults to false."/>
-        <ea:parameter property="pmd.ignore.annotations" default="false" description="Ignore annotations. More and more modern frameworks use annotations on classes and methods, which can be very redundant and trigger CPD matches. With J2EE (CDI, Transaction Handling, etc) and Spring (everything) annotations become very redundant. Often classes or methods have the same 5-6 lines of annotations. This causes false positives."/>
-        <ea:parameter property="pmd.language" default="java" description="Flag to select the appropriate language (e.g. cpp, cs, java, php, ruby, and ecmascript); defaults to java."/>
-        <ea:parameter property="pmd.minimum.token.count" default="100" description="A positive integer indicating the minimum duplicate size."/>
+        <ea:parameter property="pmd.cpd.format" default="xml" description="The format of the report (e.g. csv, text, xml)."/>
+        <ea:parameter property="pmd.cpd.ignore.literals" default="false" description="if true, CPD ignores literal value differences when evaluating a duplicate block. This means that foo=42; and foo=43; will be seen as equivalent. You may want to run PMD with this option off to start with and then switch it on to see what it turns up."/>
+        <ea:parameter property="pmd.cpd.ignore.identifiers" default="false" description="Similar to ignoreLiterals but for identifiers; i.e., variable names, methods names, and so forth."/>
+        <ea:parameter property="pmd.cpd.ignore.annotations" default="false" description="Ignore annotations. More and more modern frameworks use annotations on classes and methods, which can be very redundant and trigger CPD matches. With J2EE (CDI, Transaction Handling, etc) and Spring (everything) annotations become very redundant. Often classes or methods have the same 5-6 lines of annotations. This causes false positives."/>
+        <ea:parameter property="pmd.cpd.language" default="java" description="Flag to select the appropriate language (e.g. cpp, cs, java, php, ruby, and ecmascript)."/>
+        <ea:parameter property="pmd.cpd.minimum.token.count" default="100" description="A positive integer indicating the minimum duplicate size."/>
         <ea:parameter property="pmd.cpd.report.outputfile" default="${target.reports}/cpd.${pmd.format}" description="The destination file for the report. If not specified the console will be used instead."/>
 
         
         <mkdir dir="${target.reports}"/>  
-        <cpd encoding="${pmd.encoding}" minimumTokenCount="${pmd.minimum.token.count}" format="${pmd.format}" ignoreLiterals="${pmd.ignore.literals}" ignoreIdentifiers="${pmd.ignore.identifiers}" ignoreAnnotations="${pmd.ignore.annotations}" language="${pmd.language}" outputfile="${pmd.cpd.report.outputfile}">
+        <cpd encoding="${pmd.encoding}" minimumTokenCount="${pmd.cpd.minimum.token.count}" format="${pmd.cpd.format}" ignoreLiterals="${pmd.cpd.ignore.literals}" ignoreIdentifiers="${pmd.cpd.ignore.identifiers}" ignoreAnnotations="${pmd.cpd.ignore.annotations}" language="${pmd.cpd.language}" outputfile="${pmd.cpd.report.outputfile}">
              <fileset refid="pmd.fileset"/>
         </cpd>
     </target>
@@ -55,12 +55,11 @@
     <target name="pmd:pmd" depends="pmd:init" description="creates a PMD report based on the rulesets and configuration set in the plugin">
         <ea:parameter property="pmd.rulesetfiles" default="rulesets/java/basic.xml,rulesets/java/imports.xml,java-unusedcode" description="A comma delimited list of ruleset files ('rulesets/basic.xml,rulesets/design.xml'). If you write your own ruleset files, you can put them on the classpath and plug them in here."/>
         <ea:parameter property="pmd.failonerror" default="true" description="Whether or not to fail the build if any errors occur while processing the files"/>
-        <ea:parameter property="pmd.failonruleviolation" default="true" description="Whether or not to fail the build if PMD finds any problems"/>
         <ea:parameter property="pmd.minimum.priority" default="5" description="The rule priority threshold; rules with lower priority than they will not be used"/>
-        <ea:parameter property="pmd.max.rule.violations" default="0" description="Whether or not to fail the build if PMD finds more than the value of this attribute. Note that setting this attribute does not require to set the failOnRuleViolation to true."/>
+        <ea:parameter property="pmd.max.rule.violations" default="-1" description="Whether or not to fail the build if PMD finds more than the value of this attribute. Note that setting this attribute to '-1' will never fail the build on rule violation"/>
         <ea:parameter property="pmd.report.outputfile" default="${target.reports}/pmd.xml"/>
         <mkdir dir="${target.reports}"/>  
-        <pmd encoding="${pmd.encoding}" rulesetfiles="${pmd.rulesetfiles}" failonerror="${pmd.failonerror}" failonruleviolation="${pmd.failonruleviolation}" minimumPriority="${pmd.minimum.priority}" maxruleviolations="${pmd.max.rule.violations}">
+        <pmd encoding="${pmd.encoding}" rulesetfiles="${pmd.rulesetfiles}" failonerror="${pmd.failonerror}" minimumPriority="${pmd.minimum.priority}" maxruleviolations="${pmd.max.rule.violations}">
              <formatter type="xml" toFile="${pmd.report.outputfile}"/>
              <fileset refid="pmd.fileset"/>
         </pmd>
