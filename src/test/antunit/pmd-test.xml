@@ -60,7 +60,7 @@
         <au:assertPropertyEquals name="pmd.cpd.ignore.annotations" value="false"/>
         <au:assertPropertyEquals name="pmd.cpd.language" value="java"/>
         <au:assertPropertyEquals name="pmd.cpd.minimum.token.count" value="100"/>
-        <au:assertPropertyEquals name="pmd.cpd.report.outputfile" value="${target.reports}/cpd.${pmd.format}"/>
+        <au:assertPropertyEquals name="pmd.cpd.report.outputfile" value="${target.reports}/cpd.${pmd.cpd.format}"/>
         <au:assertPropertyEquals name="pmd.main.sources" value="${basedir}/src/main/java"/>
         <au:assertPropertyEquals name="pmd.main.sources.includes" value="**/*.java"/>
         <au:assertPropertyEquals name="pmd.main.sources.excludes" value=""/>

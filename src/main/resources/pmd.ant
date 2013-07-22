@@ -42,7 +42,7 @@
         <ea:parameter property="pmd.cpd.ignore.annotations" default="false" description="Ignore annotations. More and more modern frameworks use annotations on classes and methods, which can be very redundant and trigger CPD matches. With J2EE (CDI, Transaction Handling, etc) and Spring (everything) annotations become very redundant. Often classes or methods have the same 5-6 lines of annotations. This causes false positives."/>
         <ea:parameter property="pmd.cpd.language" default="java" description="Flag to select the appropriate language (e.g. cpp, cs, java, php, ruby, and ecmascript)."/>
         <ea:parameter property="pmd.cpd.minimum.token.count" default="100" description="A positive integer indicating the minimum duplicate size."/>
-        <ea:parameter property="pmd.cpd.report.outputfile" default="${target.reports}/cpd.${pmd.format}" description="The destination file for the report. If not specified the console will be used instead."/>
+        <ea:parameter property="pmd.cpd.report.outputfile" default="${target.reports}/cpd.${pmd.cpd.format}" description="The destination file for the report. If not specified the console will be used instead."/>
 
         
         <mkdir dir="${target.reports}"/>  

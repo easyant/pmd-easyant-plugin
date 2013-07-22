@@ -38,7 +38,7 @@ Organisation attribute is optional. If not specified default one will be used.
 |pmd.rulesetfiles|A comma delimited list of ruleset files ('rulesets/basic.xml,rulesets/design.xml'). If you write your own ruleset files, you can put them on the classpath and plug them in here.|false|rulesets/java/basic.xml,rulesets/java/imports.xml,java-unusedcode|
 |pmd.report.outputfile||false|${target.reports}/pmd.xml|
 |pmd.encoding|The character set encoding (e.g. UTF-8) to use when reading the source code files|false|UTF-8|
-|pmd.cpd.report.outputfile|The destination file for the report. If not specified the console will be used instead.|false|${target.reports}/cpd.${pmd.format}|
+|pmd.cpd.report.outputfile|The destination file for the report. If not specified the console will be used instead.|false|${target.reports}/cpd.${pmd.cpd.format}|
 |pmd.main.sources.excludes|Pattern describing files included in pmd checks|false||
 |target.reports|base directory for reports|false|${target}/reports|
 |pmd.max.rule.violations|Whether or not to fail the build if PMD finds more than the value of this attribute. Note that setting this attribute to '-1' will never fail the build on rule violation|false|-1|
