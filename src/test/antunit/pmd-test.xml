@@ -33,7 +33,7 @@
             <include name="**/lib/**"/>
         </delete>
     </target>
-    
+
     <target name="setUp" depends="clean"/>
     <target name="tearDown" depends="clean"/>
     
@@ -44,7 +44,7 @@
     </target>
     
     <target name="test-pmd:pmd" depends="pmd:pmd">
-        <au:assertPropertyEquals name="pmd.rulesetfiles" value="rulesets/java/imports.xml,java-unusedcode"/>
+        <au:assertPropertyEquals name="pmd.rulesetfiles" value="rulesets/java/basic.xml,rulesets/java/imports.xml,java-unusedcode"/>
         <au:assertPropertyEquals name="pmd.failonerror" value="true"/>
         <au:assertPropertyEquals name="pmd.failonruleviolation" value="true"/>
         <au:assertPropertyEquals name="pmd.minimum.priority" value="5"/>

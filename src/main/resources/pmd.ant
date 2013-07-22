@@ -51,7 +51,7 @@
 
 
     <target name="pmd:pmd" depends="pmd:init" description="creates a PMD report based on the rulesets and configuration set in the plugin">
-        <ea:parameter property="pmd.rulesetfiles" default="rulesets/java/imports.xml,java-unusedcode" description="A comma delimited list of ruleset files ('rulesets/basic.xml,rulesets/design.xml'). If you write your own ruleset files, you can put them on the classpath and plug them in here."/>
+        <ea:parameter property="pmd.rulesetfiles" default="rulesets/java/basic.xml,rulesets/java/imports.xml,java-unusedcode" description="A comma delimited list of ruleset files ('rulesets/basic.xml,rulesets/design.xml'). If you write your own ruleset files, you can put them on the classpath and plug them in here."/>
         <ea:parameter property="pmd.failonerror" default="true" description="Whether or not to fail the build if any errors occur while processing the files"/>
         <ea:parameter property="pmd.failonruleviolation" default="true" description="Whether or not to fail the build if PMD finds any problems"/>
         <ea:parameter property="pmd.minimum.priority" default="5" description="The rule priority threshold; rules with lower priority than they will not be used"/>
