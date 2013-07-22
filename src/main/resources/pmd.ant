@@ -31,7 +31,7 @@
         <ea:parameter property="pmd.main.sources.excludes" default="" description="Pattern describing files included in pmd checks"/>
 
 
-        <fileset id="pmd.fileset" dir="${pmd.main.sources}" includes="${src.main.sources.includes}" excludes="${src.main.sources.excludes}" erroronmissingdir="false"/>
+        <fileset id="pmd.fileset" dir="${pmd.main.sources}" includes="${pmd.main.sources.includes}" excludes="${pmd.main.sources.excludes}" />
     </target>
 
 
